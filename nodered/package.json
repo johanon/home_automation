@@ -2,5 +2,11 @@
     "name": "node-red-project",
     "description": "A Node-RED Project",
     "version": "0.0.1",
-    "private": true
+    "private": true,
+    "scripts": {
+        "start": "node node_modules/node-red/red.js -v -u . flows.json"
+    },
+    "dependencies": {
+        "node-red": "^1.0.3"
+    }
 }
