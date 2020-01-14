@@ -1,6 +1,10 @@
 git init
 
 git clone https://github.com/johanon/home_automation.git
+cd nodered
+npm i
+npm start
+
 
 Docker from Ubuntu repository
 sudo apt-get update

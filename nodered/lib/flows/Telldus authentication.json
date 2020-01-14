@@ -1,232 +1,15 @@
 [
     {
-        "id": "70d96846.09f498",
-        "type": "tab",
-        "label": "Sensors",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "36e3f47f.e9567c",
+        "id": "7f95cb24.6f6f44",
         "type": "tab",
         "label": "Flow 2",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "fe4c8460.02d6e8",
-        "type": "debug",
-        "z": "70d96846.09f498",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 610,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "8d38359c.35de38",
+        "id": "bac60d2f.1c4af",
         "type": "http request",
-        "z": "70d96846.09f498",
-        "name": "",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": true,
-        "url": "http://{{ipaddress}}/api/{{{topic}}}",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 450,
-        "y": 220,
-        "wires": [
-            [
-                "fe4c8460.02d6e8"
-            ]
-        ]
-    },
-    {
-        "id": "808ce8.e7887318",
-        "type": "change",
-        "z": "70d96846.09f498",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "headers",
-                "pt": "msg",
-                "to": "{\t   \"Authorization\":\"Bearer \" & $globalContext(\"accessToken\")\t}",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "ipaddress",
-                "pt": "msg",
-                "to": "ipaddress",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 280,
-        "y": 220,
-        "wires": [
-            [
-                "8d38359c.35de38"
-            ]
-        ]
-    },
-    {
-        "id": "245339aa.26e976",
-        "type": "inject",
-        "z": "70d96846.09f498",
-        "name": "",
-        "topic": "sensors/list",
-        "payload": "{\"includeValues\":1,\"includeScale\":1,\"includeUnit\":1}",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 110,
-        "y": 220,
-        "wires": [
-            [
-                "808ce8.e7887318"
-            ]
-        ]
-    },
-    {
-        "id": "be3c8efb.bf495",
-        "type": "inject",
-        "z": "70d96846.09f498",
-        "name": "",
-        "topic": "refreshToken",
-        "payload": "accessToken",
-        "payloadType": "global",
-        "repeat": "86400",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 160,
-        "y": 100,
-        "wires": [
-            [
-                "103dc3d6.5f50bc"
-            ]
-        ]
-    },
-    {
-        "id": "44b6f739.6cc658",
-        "type": "http request",
-        "z": "70d96846.09f498",
-        "name": "",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": false,
-        "url": "http://{{ipaddress}}/api/refreshToken",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 530,
-        "y": 100,
-        "wires": [
-            [
-                "42bab42d.209a4c"
-            ]
-        ]
-    },
-    {
-        "id": "103dc3d6.5f50bc",
-        "type": "change",
-        "z": "70d96846.09f498",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "headers",
-                "pt": "msg",
-                "to": "{\t   \"Authorization\":\"Bearer \" & payload\t}",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "ipaddress",
-                "pt": "msg",
-                "to": "ipaddress",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 360,
-        "y": 100,
-        "wires": [
-            [
-                "44b6f739.6cc658"
-            ]
-        ]
-    },
-    {
-        "id": "42bab42d.209a4c",
-        "type": "change",
-        "z": "70d96846.09f498",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "accessToken",
-                "pt": "global",
-                "to": "payload.token",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 730,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e5bb0f6e.92e87",
-        "type": "comment",
-        "z": "70d96846.09f498",
-        "name": "Refresh token",
-        "info": "",
-        "x": 110,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "fe2bccb2.561cc",
-        "type": "comment",
-        "z": "70d96846.09f498",
-        "name": "Get values",
-        "info": "",
-        "x": 100,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "df89a09f.b7f75",
-        "type": "http request",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "method": "PUT",
         "ret": "obj",
@@ -240,14 +23,14 @@
         "y": 140,
         "wires": [
             [
-                "b357cf.3ff7083"
+                "5a074800.46a3c8"
             ]
         ]
     },
     {
-        "id": "381ad1a3.a9c8ae",
+        "id": "1f114db5.66c122",
         "type": "inject",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "topic": "",
         "payload": "app=\"Nodered\"",
@@ -260,14 +43,14 @@
         "y": 140,
         "wires": [
             [
-                "4421784d.c3def8"
+                "e4e1f324.cfbf2"
             ]
         ]
     },
     {
-        "id": "b357cf.3ff7083",
+        "id": "5a074800.46a3c8",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "rules": [
             {
@@ -287,14 +70,14 @@
         "y": 140,
         "wires": [
             [
-                "4ff8734b.896d7c"
+                "ddafdec4.2056b"
             ]
         ]
     },
     {
-        "id": "2a775a26.9308d6",
+        "id": "2b0fa784.068d78",
         "type": "inject",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "topic": "",
         "payload": "requestToken",
@@ -307,14 +90,14 @@
         "y": 260,
         "wires": [
             [
-                "55e0e9fa.6a22f8"
+                "56727452.9ca0bc"
             ]
         ]
     },
     {
-        "id": "30180636.88255a",
+        "id": "2978546a.cf582c",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "Step 2 - Authenticate the app",
         "info": "Redirect the user to the url returned in step 1 to let him/her authenticate the app.",
         "x": 140,
@@ -322,9 +105,9 @@
         "wires": []
     },
     {
-        "id": "cc1085ad.339878",
+        "id": "2e0ae859.cc2a18",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "Step 1 - Request a request token",
         "info": "Request a request token by performing a PUT call to the endpoint /api/token. You need to supply the application name as a parameter “app”\n  \n  http://api.telldus.net/localapi/api/authentication.html#step-1-request-a-request-token\n",
         "x": 150,
@@ -332,9 +115,9 @@
         "wires": []
     },
     {
-        "id": "aeb5cca5.cbac4",
+        "id": "58b170c0.2eed",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "Step 3 - Exchange the request token for an access token",
         "info": "When the user has authenticated the request token in step 2 the application needs to exchange this for an access token. The access token can be used in the API requests. To exchange the request token for an access token perform a GET call to the same endpoint in step 1. Supply the request token as the parameter “token”.",
         "x": 230,
@@ -342,9 +125,9 @@
         "wires": []
     },
     {
-        "id": "4421784d.c3def8",
+        "id": "e4e1f324.cfbf2",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "rules": [
             {
@@ -371,14 +154,14 @@
         "y": 140,
         "wires": [
             [
-                "df89a09f.b7f75"
+                "bac60d2f.1c4af"
             ]
         ]
     },
     {
-        "id": "4ff8734b.896d7c",
+        "id": "ddafdec4.2056b",
         "type": "debug",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "url",
         "active": true,
         "tosidebar": true,
@@ -390,9 +173,9 @@
         "wires": []
     },
     {
-        "id": "340f8c80.78f574",
+        "id": "4b30d849.c8abc8",
         "type": "inject",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "topic": "refreshToken",
         "payload": "accessToken",
@@ -405,14 +188,14 @@
         "y": 380,
         "wires": [
             [
-                "74205da1.39bfc4"
+                "84a194d8.07fc08"
             ]
         ]
     },
     {
-        "id": "907973d7.8ce8b",
+        "id": "a45775d4.0e44d8",
         "type": "http request",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -426,14 +209,14 @@
         "y": 380,
         "wires": [
             [
-                "5e614775.11d518"
+                "285cb1bc.89b96e"
             ]
         ]
     },
     {
-        "id": "74205da1.39bfc4",
+        "id": "84a194d8.07fc08",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "rules": [
             {
@@ -460,14 +243,14 @@
         "y": 380,
         "wires": [
             [
-                "907973d7.8ce8b"
+                "a45775d4.0e44d8"
             ]
         ]
     },
     {
-        "id": "5e614775.11d518",
+        "id": "285cb1bc.89b96e",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "rules": [
             {
@@ -490,9 +273,9 @@
         ]
     },
     {
-        "id": "463034d9.9c463c",
+        "id": "2f075aed.d01f26",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "Refresh token",
         "info": "",
         "x": 90,
@@ -500,9 +283,9 @@
         "wires": []
     },
     {
-        "id": "2f9c3c70.6aebb4",
+        "id": "7a5ab32b.8eb37c",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "Telldus Tellstick",
         "info": "Local API  \nhttp://api.telldus.net/localapi/api.html  ",
         "x": 100,
@@ -510,9 +293,9 @@
         "wires": []
     },
     {
-        "id": "aaa19986.70aa38",
+        "id": "31926ad.34b0c96",
         "type": "inject",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "topic": "Init",
         "payload": "192.168.1.5",
@@ -525,14 +308,14 @@
         "y": 40,
         "wires": [
             [
-                "3a1250e.35e37b"
+                "d2a0e21e.18bf2"
             ]
         ]
     },
     {
-        "id": "3a1250e.35e37b",
+        "id": "d2a0e21e.18bf2",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "rules": [
             {
@@ -555,9 +338,9 @@
         ]
     },
     {
-        "id": "55e0e9fa.6a22f8",
+        "id": "56727452.9ca0bc",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "rules": [
             {
@@ -577,14 +360,14 @@
         "y": 260,
         "wires": [
             [
-                "d661c900.69fbb8"
+                "ec11a272.efb4b"
             ]
         ]
     },
     {
-        "id": "d661c900.69fbb8",
+        "id": "ec11a272.efb4b",
         "type": "http request",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -598,14 +381,14 @@
         "y": 260,
         "wires": [
             [
-                "99623436.2d4838"
+                "aaf4fb81.394248"
             ]
         ]
     },
     {
-        "id": "99623436.2d4838",
+        "id": "aaf4fb81.394248",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7f95cb24.6f6f44",
         "name": "",
         "rules": [
             {

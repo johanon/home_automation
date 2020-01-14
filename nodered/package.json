@@ -4,7 +4,7 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "start": "node node_modules/node-red/red.js -v -u . flows.json"
+        "start": "node node_modules/node-red/red.js -v -u ."
     },
     "dependencies": {
         "node-red": "^1.0.3"
