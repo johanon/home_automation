@@ -27,7 +27,6 @@ services:
     restart: unless-stopped
     volumes:
       - influxdb_data:/var/lib/influxdb
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
     environment:
       - INFLUXDB_DB=home
       - INFLUXDB_ADMIN_USER=admin
@@ -42,6 +41,7 @@ services:
       - 3000:3000
     volumes:
       - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
 

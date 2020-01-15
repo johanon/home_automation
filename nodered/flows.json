@@ -2,30 +2,42 @@
     {
         "id": "70d96846.09f498",
         "type": "tab",
-        "label": "Sensors",
+        "label": "Telldus Sensors",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "36e3f47f.e9567c",
+        "id": "7b34ca58.d04434",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Telldus Token",
         "disabled": false,
         "info": ""
+    },
+    {
+        "id": "3dc3ce7c.0bde92",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "home_automation_influxdb_1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "home",
+        "name": "",
+        "usetls": false,
+        "tls": ""
     },
     {
         "id": "fe4c8460.02d6e8",
         "type": "debug",
         "z": "70d96846.09f498",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
         "x": 610,
-        "y": 220,
+        "y": 100,
         "wires": []
     },
     {
@@ -42,10 +54,11 @@
         "proxy": "",
         "authType": "",
         "x": 450,
-        "y": 220,
+        "y": 100,
         "wires": [
             [
-                "fe4c8460.02d6e8"
+                "fe4c8460.02d6e8",
+                "a353b729.25d108"
             ]
         ]
     },
@@ -76,7 +89,7 @@
         "to": "",
         "reg": false,
         "x": 280,
-        "y": 220,
+        "y": 100,
         "wires": [
             [
                 "8d38359c.35de38"
@@ -91,127 +104,17 @@
         "topic": "sensors/list",
         "payload": "{\"includeValues\":1,\"includeScale\":1,\"includeUnit\":1}",
         "payloadType": "json",
-        "repeat": "",
+        "repeat": "10",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "x": 110,
-        "y": 220,
+        "y": 100,
         "wires": [
             [
                 "808ce8.e7887318"
             ]
         ]
-    },
-    {
-        "id": "be3c8efb.bf495",
-        "type": "inject",
-        "z": "70d96846.09f498",
-        "name": "",
-        "topic": "refreshToken",
-        "payload": "accessToken",
-        "payloadType": "global",
-        "repeat": "86400",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 160,
-        "y": 100,
-        "wires": [
-            [
-                "103dc3d6.5f50bc"
-            ]
-        ]
-    },
-    {
-        "id": "44b6f739.6cc658",
-        "type": "http request",
-        "z": "70d96846.09f498",
-        "name": "",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": false,
-        "url": "http://{{ipaddress}}/api/refreshToken",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 530,
-        "y": 100,
-        "wires": [
-            [
-                "42bab42d.209a4c"
-            ]
-        ]
-    },
-    {
-        "id": "103dc3d6.5f50bc",
-        "type": "change",
-        "z": "70d96846.09f498",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "headers",
-                "pt": "msg",
-                "to": "{\t   \"Authorization\":\"Bearer \" & payload\t}",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "ipaddress",
-                "pt": "msg",
-                "to": "ipaddress",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 360,
-        "y": 100,
-        "wires": [
-            [
-                "44b6f739.6cc658"
-            ]
-        ]
-    },
-    {
-        "id": "42bab42d.209a4c",
-        "type": "change",
-        "z": "70d96846.09f498",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "accessToken",
-                "pt": "global",
-                "to": "payload.token",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 730,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e5bb0f6e.92e87",
-        "type": "comment",
-        "z": "70d96846.09f498",
-        "name": "Refresh token",
-        "info": "",
-        "x": 110,
-        "y": 60,
-        "wires": []
     },
     {
         "id": "fe2bccb2.561cc",
@@ -220,13 +123,293 @@
         "name": "Get values",
         "info": "",
         "x": 100,
-        "y": 180,
+        "y": 60,
         "wires": []
     },
     {
-        "id": "df89a09f.b7f75",
+        "id": "26985499.7d472c",
+        "type": "debug",
+        "z": "70d96846.09f498",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 630,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a353b729.25d108",
+        "type": "change",
+        "z": "70d96846.09f498",
+        "name": "filter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sensor[name]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "32cb63df.1fb59c"
+            ]
+        ]
+    },
+    {
+        "id": "43027e35.b218c",
+        "type": "comment",
+        "z": "70d96846.09f498",
+        "name": "Influx line protocol",
+        "info": "https://docs.influxdata.com/influxdb/v1.7/write_protocols/line_protocol_tutorial/  \n\nhttp://localhost:8086/write?db=mydb  \n\nPOST   \nweather,location=us-midwest temperature=82 1465839830100400200  \n|measurement|,tag_set| |field_set| |timestamp|  \n\n",
+        "x": 150,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "dd43f6cd.4b68c8",
         "type": "http request",
-        "z": "36e3f47f.e9567c",
+        "z": "70d96846.09f498",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://home_automation_influxdb_1:8086/write?db=home",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 470,
+        "y": 420,
+        "wires": [
+            [
+                "679887f7.2b21a8"
+            ]
+        ]
+    },
+    {
+        "id": "882ff7ad.89c168",
+        "type": "inject",
+        "z": "70d96846.09f498",
+        "name": "",
+        "topic": "",
+        "payload": "cpu_load_short,host=server01,region=us-west value=0.64 1434055562000000000",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 330,
+        "y": 420,
+        "wires": [
+            [
+                "dd43f6cd.4b68c8"
+            ]
+        ]
+    },
+    {
+        "id": "679887f7.2b21a8",
+        "type": "debug",
+        "z": "70d96846.09f498",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 640,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b4a7d38c.fd4ce",
+        "type": "change",
+        "z": "70d96846.09f498",
+        "name": "influx format",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.{\t   \"measurement\":\"sensors\",\t   \"fields\":data{$string(name):$number(value)},\t   \"tags\":{\t       \"id\":id,\t       \"model\":model,\t       \"name\":name,\t       \"protocol\":protocol,\t       \"sensorId\":sensorId\t   },\t   \"timestamp\":$millis()\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 230,
+        "y": 300,
+        "wires": [
+            [
+                "cc355886.e875e8",
+                "fc2351c3.b71a2"
+            ]
+        ]
+    },
+    {
+        "id": "32cb63df.1fb59c",
+        "type": "function",
+        "z": "70d96846.09f498",
+        "name": "fix",
+        "func": "try {\n  let index = msg.payload.findIndex( ({ id }) => id === 6 );\n  msg.payload[index].data[0].name = \"power\"\n  msg.payload[index].data[1].name = \"energy\"\n}\ncatch(error) {\n  node.status({fill:\"red\",shape:\"ring\",text:\"Error\"});\n}\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "26985499.7d472c",
+                "6a372776.ca8a88"
+            ]
+        ]
+    },
+    {
+        "id": "6a372776.ca8a88",
+        "type": "split",
+        "z": "70d96846.09f498",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "24709e16.a93a12"
+            ]
+        ]
+    },
+    {
+        "id": "44a17b66.f46f54",
+        "type": "join",
+        "z": "70d96846.09f498",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "1",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 510,
+        "y": 240,
+        "wires": [
+            [
+                "d5370275.27b14",
+                "b4a7d38c.fd4ce"
+            ]
+        ]
+    },
+    {
+        "id": "24709e16.a93a12",
+        "type": "change",
+        "z": "70d96846.09f498",
+        "name": "topic",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "payload.(id & \" \" & name)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload ~>|$|{\"hour\":$millis() ~> $fromMillis('[Y0001]-[M01]-[D01] [H01]:xx [Z]', '+0100')}|",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [
+                "d30b1f67.e289c"
+            ]
+        ],
+        "info": "topic based RBE  \nadding hourly trigger  "
+    },
+    {
+        "id": "d30b1f67.e289c",
+        "type": "rbe",
+        "z": "70d96846.09f498",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 390,
+        "y": 240,
+        "wires": [
+            [
+                "44a17b66.f46f54"
+            ]
+        ]
+    },
+    {
+        "id": "d5370275.27b14",
+        "type": "debug",
+        "z": "70d96846.09f498",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "cc355886.e875e8",
+        "type": "debug",
+        "z": "70d96846.09f498",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 410,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "fd835577.edec38",
+        "type": "http request",
+        "z": "7b34ca58.d04434",
         "name": "",
         "method": "PUT",
         "ret": "obj",
@@ -240,14 +423,14 @@
         "y": 140,
         "wires": [
             [
-                "b357cf.3ff7083"
+                "5b47d123.41d4a"
             ]
         ]
     },
     {
-        "id": "381ad1a3.a9c8ae",
+        "id": "378a6f63.43dbe",
         "type": "inject",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "topic": "",
         "payload": "app=\"Nodered\"",
@@ -260,14 +443,14 @@
         "y": 140,
         "wires": [
             [
-                "4421784d.c3def8"
+                "6f948f82.f7ba4"
             ]
         ]
     },
     {
-        "id": "b357cf.3ff7083",
+        "id": "5b47d123.41d4a",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "rules": [
             {
@@ -287,14 +470,14 @@
         "y": 140,
         "wires": [
             [
-                "4ff8734b.896d7c"
+                "956efba6.5f7e38"
             ]
         ]
     },
     {
-        "id": "2a775a26.9308d6",
+        "id": "f365833f.5cb09",
         "type": "inject",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "topic": "",
         "payload": "requestToken",
@@ -307,14 +490,14 @@
         "y": 260,
         "wires": [
             [
-                "55e0e9fa.6a22f8"
+                "acc5ad4c.4419e"
             ]
         ]
     },
     {
-        "id": "30180636.88255a",
+        "id": "19c33f64.a8af61",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "Step 2 - Authenticate the app",
         "info": "Redirect the user to the url returned in step 1 to let him/her authenticate the app.",
         "x": 140,
@@ -322,9 +505,9 @@
         "wires": []
     },
     {
-        "id": "cc1085ad.339878",
+        "id": "86a75ed8.7c884",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "Step 1 - Request a request token",
         "info": "Request a request token by performing a PUT call to the endpoint /api/token. You need to supply the application name as a parameter “app”\n  \n  http://api.telldus.net/localapi/api/authentication.html#step-1-request-a-request-token\n",
         "x": 150,
@@ -332,9 +515,9 @@
         "wires": []
     },
     {
-        "id": "aeb5cca5.cbac4",
+        "id": "2800216f.a01e5e",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "Step 3 - Exchange the request token for an access token",
         "info": "When the user has authenticated the request token in step 2 the application needs to exchange this for an access token. The access token can be used in the API requests. To exchange the request token for an access token perform a GET call to the same endpoint in step 1. Supply the request token as the parameter “token”.",
         "x": 230,
@@ -342,9 +525,9 @@
         "wires": []
     },
     {
-        "id": "4421784d.c3def8",
+        "id": "6f948f82.f7ba4",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "rules": [
             {
@@ -371,14 +554,14 @@
         "y": 140,
         "wires": [
             [
-                "df89a09f.b7f75"
+                "fd835577.edec38"
             ]
         ]
     },
     {
-        "id": "4ff8734b.896d7c",
+        "id": "956efba6.5f7e38",
         "type": "debug",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "url",
         "active": true,
         "tosidebar": true,
@@ -390,9 +573,9 @@
         "wires": []
     },
     {
-        "id": "340f8c80.78f574",
+        "id": "fc37580d.9e6b88",
         "type": "inject",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "topic": "refreshToken",
         "payload": "accessToken",
@@ -405,14 +588,14 @@
         "y": 380,
         "wires": [
             [
-                "74205da1.39bfc4"
+                "6346acd7.8184d4"
             ]
         ]
     },
     {
-        "id": "907973d7.8ce8b",
+        "id": "f403953a.c00068",
         "type": "http request",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -426,14 +609,14 @@
         "y": 380,
         "wires": [
             [
-                "5e614775.11d518"
+                "55e7d585.ef67cc"
             ]
         ]
     },
     {
-        "id": "74205da1.39bfc4",
+        "id": "6346acd7.8184d4",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "rules": [
             {
@@ -460,14 +643,14 @@
         "y": 380,
         "wires": [
             [
-                "907973d7.8ce8b"
+                "f403953a.c00068"
             ]
         ]
     },
     {
-        "id": "5e614775.11d518",
+        "id": "55e7d585.ef67cc",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "rules": [
             {
@@ -486,13 +669,15 @@
         "x": 710,
         "y": 380,
         "wires": [
-            []
+            [
+                "31f698c5.65d1a8"
+            ]
         ]
     },
     {
-        "id": "463034d9.9c463c",
+        "id": "a2075f29.aa731",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "Refresh token",
         "info": "",
         "x": 90,
@@ -500,9 +685,9 @@
         "wires": []
     },
     {
-        "id": "2f9c3c70.6aebb4",
+        "id": "572b1d42.40ad44",
         "type": "comment",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "Telldus Tellstick",
         "info": "Local API  \nhttp://api.telldus.net/localapi/api.html  ",
         "x": 100,
@@ -510,9 +695,9 @@
         "wires": []
     },
     {
-        "id": "aaa19986.70aa38",
+        "id": "b030b08a.88e01",
         "type": "inject",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "topic": "Init",
         "payload": "192.168.1.5",
@@ -525,14 +710,14 @@
         "y": 40,
         "wires": [
             [
-                "3a1250e.35e37b"
+                "b90d76bc.744428"
             ]
         ]
     },
     {
-        "id": "3a1250e.35e37b",
+        "id": "b90d76bc.744428",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "rules": [
             {
@@ -555,9 +740,9 @@
         ]
     },
     {
-        "id": "55e0e9fa.6a22f8",
+        "id": "acc5ad4c.4419e",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "rules": [
             {
@@ -577,14 +762,14 @@
         "y": 260,
         "wires": [
             [
-                "d661c900.69fbb8"
+                "c029edac.024f3"
             ]
         ]
     },
     {
-        "id": "d661c900.69fbb8",
+        "id": "c029edac.024f3",
         "type": "http request",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -598,14 +783,14 @@
         "y": 260,
         "wires": [
             [
-                "99623436.2d4838"
+                "8a2031ce.0e6ea"
             ]
         ]
     },
     {
-        "id": "99623436.2d4838",
+        "id": "8a2031ce.0e6ea",
         "type": "change",
-        "z": "36e3f47f.e9567c",
+        "z": "7b34ca58.d04434",
         "name": "",
         "rules": [
             {
@@ -624,7 +809,49 @@
         "x": 710,
         "y": 260,
         "wires": [
-            []
+            [
+                "36318f0e.10b04"
+            ]
         ]
+    },
+    {
+        "id": "36318f0e.10b04",
+        "type": "debug",
+        "z": "7b34ca58.d04434",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 910,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "31f698c5.65d1a8",
+        "type": "debug",
+        "z": "7b34ca58.d04434",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 910,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "fc2351c3.b71a2",
+        "type": "influxdb batch",
+        "z": "70d96846.09f498",
+        "influxdb": "3dc3ce7c.0bde92",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "",
+        "x": 500,
+        "y": 300,
+        "wires": []
     }
 ]
