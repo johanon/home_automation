@@ -1,0 +1,26 @@
+apiVersion: 1
+
+# list of datasources that should be deleted from the database
+deleteDatasources:
+  - name: test
+
+# list of datasources to insert/update
+datasources:
+  - name: InfluxDB_internal
+    type: influxdb
+    access: proxy
+    database: _internal
+    user: user
+    password: user
+    url: http://home_automation_influxdb_1:8086
+    jsonData:
+      httpMode: POST
+  - name: home
+    type: influxdb
+    access: proxy
+    database: home
+    user: user
+    password: user
+    url: http://home_automation_influxdb_1:8086
+    jsonData:
+      httpMode: POST

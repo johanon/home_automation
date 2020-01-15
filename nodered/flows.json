@@ -26,21 +26,6 @@
         "tls": ""
     },
     {
-        "id": "fe4c8460.02d6e8",
-        "type": "debug",
-        "z": "70d96846.09f498",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 610,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "8d38359c.35de38",
         "type": "http request",
         "z": "70d96846.09f498",
@@ -57,8 +42,7 @@
         "y": 100,
         "wires": [
             [
-                "fe4c8460.02d6e8",
-                "a353b729.25d108"
+                "42642271.b5cfec"
             ]
         ]
     },
@@ -136,7 +120,7 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 630,
+        "x": 410,
         "y": 160,
         "wires": []
     },
@@ -273,7 +257,7 @@
         "wires": [
             [
                 "26985499.7d472c",
-                "6a372776.ca8a88"
+                "b4a7d38c.fd4ce"
             ]
         ]
     },
@@ -320,8 +304,7 @@
         "y": 240,
         "wires": [
             [
-                "d5370275.27b14",
-                "b4a7d38c.fd4ce"
+                "d5370275.27b14"
             ]
         ]
     },
@@ -847,11 +830,56 @@
         "type": "influxdb batch",
         "z": "70d96846.09f498",
         "influxdb": "3dc3ce7c.0bde92",
-        "precision": "",
+        "precision": "ms",
         "retentionPolicy": "",
         "name": "",
         "x": 500,
         "y": 300,
         "wires": []
+    },
+    {
+        "id": "42642271.b5cfec",
+        "type": "switch",
+        "z": "70d96846.09f498",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 100,
+        "wires": [
+            [
+                "a353b729.25d108"
+            ],
+            [
+                "f28a17ab.f8c558"
+            ]
+        ]
+    },
+    {
+        "id": "f28a17ab.f8c558",
+        "type": "function",
+        "z": "70d96846.09f498",
+        "name": "statusCode",
+        "func": "node.status({fill:\"red\",shape:\"ring\",text:msg.statusCode});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 140,
+        "wires": [
+            []
+        ]
     }
 ]
