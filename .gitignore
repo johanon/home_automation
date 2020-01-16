@@ -1,3 +1,4 @@
 *.backup
 nodered/.config.json
+nodered/context/
 node_modules/
