@@ -17,6 +17,13 @@ http://192.168.1.5/api
 # Installation  
 Targeting raspberry pi with docker  
 
+- Raspberry Pi  
+Flash SD-card Samsung Evo with Raspbian Buster using Balena Etcher.  
+In boot directory. Touch ssh and add wpa_supplicant.conf for wifi.  
+Boot up pi. Change password and /etc/hostname  
+sudo apt-get update  
+sudo apt-get upgrade  
+
 Docker from Raspbian stretch official repos too old to support docker-compose features (2020-01-16).  
 docker --version  
 Docker version 1.8.3, build f4bf5c7  
@@ -44,8 +51,3 @@ Docker version 19.03.5, build 633a0ea
 git clone https://github.com/johanon/home_automation.git
 cd home_automation
 sudo docker-compose up -d
-
-Notes:
-Docker network names differ windows home_automation..., raspbian homeautomation...  
-modify nodered flow and grafana provisioned datasources  
-
