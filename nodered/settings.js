@@ -235,10 +235,7 @@ module.exports = {
     //
     contextStorage: {
         default: {
-            module:"localfilesystem",
-            config: {
-                flushInterval: 3600
-            }
+            module:"localfilesystem"
         }
      },
 

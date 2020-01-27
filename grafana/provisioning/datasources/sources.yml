@@ -12,7 +12,7 @@ datasources:
     database: _internal
     user: user
     password: user
-    url: http://home_automation_influxdb_1:8086
+    url: http://influxdb:8086
     jsonData:
       httpMode: POST
   - name: home
@@ -21,6 +21,6 @@ datasources:
     database: home
     user: user
     password: user
-    url: http://home_automation_influxdb_1:8086
+    url: http://influxdb:8086
     jsonData:
       httpMode: POST
