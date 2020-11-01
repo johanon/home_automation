@@ -22,13 +22,18 @@ cd home_automation
 sudo docker-compose up -d  
 
 # Update containers  
-docker-compose pull  
+- Ubuntu  
+sudo apt-get update  
+sudo apt-get upgrade  
+
+- Containers  
+docker-compose pull   
 docker-compose up -d  
 (docker image prune)  
 
 
 
-- Raspberry Pi  
+# Raspberry Pi notes    
 Flash SD-card Samsung Evo with Raspbian Buster using Balena Etcher.  
 In boot directory. Touch ssh and add wpa_supplicant.conf for wifi.  
 Boot up pi. Change password and /etc/hostname  
