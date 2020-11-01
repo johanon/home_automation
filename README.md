@@ -21,7 +21,7 @@ git clone https://github.com/johanon/home_automation.git
 cd home_automation  
 sudo docker-compose up -d  
 
-# Update containers  
+# Update    
 - Ubuntu  
 sudo apt-get update  
 sudo apt-get upgrade  
