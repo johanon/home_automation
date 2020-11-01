@@ -10,9 +10,9 @@ http://api.telldus.net/localapi/api.html
 - The local API is otherwise not well documented. Although it got some resemblance with the Telldus Live API  
 https://api.telldus.com/  
 
-- My TellStick has some additional info onboard  
+- Telldus TellStick ZNet Lite v2 has some additional info onboard  
 http://192.168.1.5/api  
-(Telldus TellStick ZNet Lite v2)  
+  
 
 # Installation  
 Targeting raspberry pi with docker  
@@ -33,7 +33,7 @@ docker-compose up -d
 
 
 
-# Raspberry Pi notes    
+# Raspberry Pi additional installation notes    
 Flash SD-card Samsung Evo with Raspbian Buster using Balena Etcher.  
 In boot directory. Touch ssh and add wpa_supplicant.conf for wifi.  
 Boot up pi. Change password and /etc/hostname  
@@ -63,4 +63,3 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 docker --version  
 Docker version 19.03.5, build 633a0ea
-
