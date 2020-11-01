@@ -17,6 +17,17 @@ http://192.168.1.5/api
 # Installation  
 Targeting raspberry pi with docker  
 
+git clone https://github.com/johanon/home_automation.git  
+cd home_automation  
+sudo docker-compose up -d  
+
+# Update containers  
+docker-compose pull  
+docker-compose up -d  
+(docker image prune)  
+
+
+
 - Raspberry Pi  
 Flash SD-card Samsung Evo with Raspbian Buster using Balena Etcher.  
 In boot directory. Touch ssh and add wpa_supplicant.conf for wifi.  
@@ -48,6 +59,3 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 docker --version  
 Docker version 19.03.5, build 633a0ea
 
-git clone https://github.com/johanon/home_automation.git
-cd home_automation
-sudo docker-compose up -d
