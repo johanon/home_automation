@@ -1,7 +1,7 @@
 {
     "node-red": {
         "name": "node-red",
-        "version": "1.2.2",
+        "version": "1.2.3",
         "local": false,
         "nodes": {
             "inject": {
@@ -360,7 +360,7 @@
     },
     "node-red-contrib-influxdb": {
         "name": "node-red-contrib-influxdb",
-        "version": "0.4.1",
+        "version": "0.5.0",
         "local": false,
         "nodes": {
             "influxdb": {

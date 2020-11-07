@@ -7,7 +7,7 @@
         "info": ""
     },
     {
-        "id": "7b34ca58.d04434",
+        "id": "1a404673.458efa",
         "type": "tab",
         "label": "Telldus Local API",
         "disabled": false,
@@ -41,7 +41,7 @@
         "y": 40,
         "wires": [
             [
-                "42642271.b5cfec"
+                "f28a17ab.f8c558"
             ]
         ]
     },
@@ -84,6 +84,15 @@
         "type": "inject",
         "z": "70d96846.09f498",
         "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "10",
         "crontab": "",
         "once": false,
@@ -233,23 +242,25 @@
         "type": "function",
         "z": "70d96846.09f498",
         "name": "fix",
-        "func": "try {\n  let index = msg.payload.findIndex( ({ model }) => model === \"010f-0602-1001\" );\n  msg.payload[index].data[0].name = \"power\"\n  msg.payload[index].data[1].name = \"energy\"\n}\ncatch(error) {\n  node.status({fill:\"red\",shape:\"ring\",text:\"Error\"});\n}\nreturn msg;\n\n",
+        "func": "// Fix name of power measuring socket device\ntry {\n//  let index = msg.payload.findIndex( ({ model }) => model === \"010f-0602-1001\" );\n  let index = msg.payload.findIndex( ({id}) => id == 6 );\n  node.status({fill:\"black\",shape:\"ring\",text:index});\n  if(index>=0) {\n    msg.payload[index].data[0].name = \"power\"\n    msg.payload[index].data[1].name = \"energy\"\n    node.status({});   // clear the status\n  }\n}\ncatch(error) {\n  node.status({fill:\"red\",shape:\"ring\",text:\"Error\"});\n}\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 410,
         "y": 100,
         "wires": [
             [
-                "b4a7d38c.fd4ce",
-                "9649391f.8d3668"
+                "9649391f.8d3668",
+                "b4a7d38c.fd4ce"
             ]
         ],
         "info": "Fibaro Wall Plug  \nseparate sensor names  "
     },
     {
-        "id": "fd835577.edec38",
+        "id": "6d02710f.1a881",
         "type": "http request",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "method": "PUT",
         "ret": "obj",
@@ -263,43 +274,34 @@
         "y": 200,
         "wires": [
             [
-                "5b47d123.41d4a"
+                "21c18fd8.76531"
             ]
         ]
     },
     {
-        "id": "378a6f63.43dbe",
+        "id": "a70f91a0.f42b3",
         "type": "inject",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "app=\"Nodered_dev\"",
+        "payload": "app=\"Nodered\"",
         "payloadType": "str",
-        "x": 410,
-        "y": 200,
+        "x": 440,
+        "y": 180,
         "wires": [
             [
-                "6f948f82.f7ba4"
+                "1d9b2717.cbf819"
             ]
         ]
     },
     {
-        "id": "5b47d123.41d4a",
+        "id": "21c18fd8.76531",
         "type": "change",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "rules": [
             {
@@ -319,14 +321,14 @@
         "y": 200,
         "wires": [
             [
-                "956efba6.5f7e38"
+                "5ba827a0.e61388"
             ]
         ]
     },
     {
-        "id": "f365833f.5cb09",
+        "id": "64613dc5.fa6074",
         "type": "inject",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "repeat": "",
         "crontab": "",
@@ -339,14 +341,14 @@
         "y": 280,
         "wires": [
             [
-                "acc5ad4c.4419e"
+                "729f9218.e24f6c"
             ]
         ]
     },
     {
-        "id": "19c33f64.a8af61",
+        "id": "c323ab0d.4353f8",
         "type": "comment",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Step 2 - Authenticate the app",
         "info": "Redirect the user to the url returned in step 1 to let him/her authenticate the app.",
         "x": 140,
@@ -354,9 +356,9 @@
         "wires": []
     },
     {
-        "id": "86a75ed8.7c884",
+        "id": "fc3d50.7cf3e2b",
         "type": "comment",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Step 1 - Request a request token",
         "info": "Request a request token by performing a PUT call to the endpoint /api/token. You need to supply the application name as a parameter “app”\n\n",
         "x": 150,
@@ -364,9 +366,9 @@
         "wires": []
     },
     {
-        "id": "2800216f.a01e5e",
+        "id": "961398ac.02ca68",
         "type": "comment",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Step 3 - Exchange for an access token",
         "info": "When the user has authenticated the request token in step 2 the application needs to exchange this for an access token. The access token can be used in the API requests. To exchange the request token for an access token perform a GET call to the same endpoint in step 1. Supply the request token as the parameter “token”.",
         "x": 170,
@@ -374,9 +376,9 @@
         "wires": []
     },
     {
-        "id": "6f948f82.f7ba4",
+        "id": "1d9b2717.cbf819",
         "type": "change",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "rules": [
             {
@@ -403,14 +405,14 @@
         "y": 200,
         "wires": [
             [
-                "fd835577.edec38"
+                "6d02710f.1a881"
             ]
         ]
     },
     {
-        "id": "956efba6.5f7e38",
+        "id": "5ba827a0.e61388",
         "type": "debug",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "url",
         "active": true,
         "tosidebar": true,
@@ -422,11 +424,20 @@
         "wires": []
     },
     {
-        "id": "fc37580d.9e6b88",
+        "id": "e58b5d47.8b729",
         "type": "inject",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
-        "repeat": "86400",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "43200",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -437,14 +448,14 @@
         "y": 340,
         "wires": [
             [
-                "6346acd7.8184d4"
+                "b655756c.4a9798"
             ]
         ]
     },
     {
-        "id": "f403953a.c00068",
+        "id": "e5de5eb8.15189",
         "type": "http request",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -458,14 +469,14 @@
         "y": 340,
         "wires": [
             [
-                "55e7d585.ef67cc"
+                "9ad46d93.240ad"
             ]
         ]
     },
     {
-        "id": "6346acd7.8184d4",
+        "id": "b655756c.4a9798",
         "type": "change",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "rules": [
             {
@@ -492,14 +503,14 @@
         "y": 340,
         "wires": [
             [
-                "f403953a.c00068"
+                "e5de5eb8.15189"
             ]
         ]
     },
     {
-        "id": "55e7d585.ef67cc",
+        "id": "9ad46d93.240ad",
         "type": "change",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "rules": [
             {
@@ -519,14 +530,14 @@
         "y": 340,
         "wires": [
             [
-                "31f698c5.65d1a8"
+                "483cbd64.dfc6d4"
             ]
         ]
     },
     {
-        "id": "a2075f29.aa731",
+        "id": "3f767c28.af6ef4",
         "type": "comment",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Refresh token",
         "info": "",
         "x": 90,
@@ -534,9 +545,9 @@
         "wires": []
     },
     {
-        "id": "572b1d42.40ad44",
+        "id": "28918b1b.3eff54",
         "type": "comment",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Telldus  Local API",
         "info": "- Authentication steps are documented at  \nhttp://api.telldus.net/localapi/api.html  \n  \n- The Local API is otherwise not well documented, although it got some resemblance with the Live API  \nhttps://api.telldus.com/  \n\n- My TellStick has some additional info onboard  \nhttp://192.168.1.5/api  \n(Telldus TellStick ZNet Lite v2)  \n",
         "x": 100,
@@ -544,9 +555,9 @@
         "wires": []
     },
     {
-        "id": "b030b08a.88e01",
+        "id": "2952067e.42a36a",
         "type": "inject",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "repeat": "",
         "crontab": "",
@@ -559,14 +570,14 @@
         "y": 100,
         "wires": [
             [
-                "b90d76bc.744428"
+                "57e7dcac.f0ba64"
             ]
         ]
     },
     {
-        "id": "b90d76bc.744428",
+        "id": "57e7dcac.f0ba64",
         "type": "change",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "rules": [
             {
@@ -589,9 +600,9 @@
         ]
     },
     {
-        "id": "acc5ad4c.4419e",
+        "id": "729f9218.e24f6c",
         "type": "change",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "rules": [
             {
@@ -611,14 +622,14 @@
         "y": 280,
         "wires": [
             [
-                "c029edac.024f3"
+                "cf568dd4.8e4cf"
             ]
         ]
     },
     {
-        "id": "c029edac.024f3",
+        "id": "cf568dd4.8e4cf",
         "type": "http request",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -632,14 +643,14 @@
         "y": 280,
         "wires": [
             [
-                "8a2031ce.0e6ea"
+                "a1e4b038.b9fd9"
             ]
         ]
     },
     {
-        "id": "8a2031ce.0e6ea",
+        "id": "a1e4b038.b9fd9",
         "type": "change",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "rules": [
             {
@@ -659,14 +670,14 @@
         "y": 280,
         "wires": [
             [
-                "36318f0e.10b04"
+                "f705a0ee.7c043"
             ]
         ]
     },
     {
-        "id": "36318f0e.10b04",
+        "id": "f705a0ee.7c043",
         "type": "debug",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -678,9 +689,9 @@
         "wires": []
     },
     {
-        "id": "31f698c5.65d1a8",
+        "id": "483cbd64.dfc6d4",
         "type": "debug",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -699,55 +710,24 @@
         "precision": "ms",
         "retentionPolicy": "",
         "name": "",
-        "x": 510,
+        "x": 580,
         "y": 160,
         "wires": []
-    },
-    {
-        "id": "42642271.b5cfec",
-        "type": "switch",
-        "z": "70d96846.09f498",
-        "name": "statusCode",
-        "property": "statusCode",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "200",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "200",
-                "vt": "str"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 710,
-        "y": 40,
-        "wires": [
-            [
-                "f28a17ab.f8c558"
-            ],
-            [
-                "a353b729.25d108"
-            ]
-        ]
     },
     {
         "id": "f28a17ab.f8c558",
         "type": "function",
         "z": "70d96846.09f498",
         "name": "statusCode",
-        "func": "node.status({fill:\"red\",shape:\"ring\",text:msg.statusCode});\n/*if (msg.statusCode == 200)\n{\n  node.status({});\n  return msg;\n} else {\n  node.status({fill:\"red\",shape:\"ring\",text:msg.statusCode});\n}*/\n\n",
+        "func": "//node.status({fill:\"red\",shape:\"ring\",text:msg.statusCode});\nif (msg.statusCode == 200)\n{\n  node.status({});\n} else {\n  node.status({fill:\"red\",shape:\"ring\",text:msg.statusCode});\n}\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 890,
+        "x": 710,
         "y": 40,
         "wires": [
-            []
+            [
+                "42642271.b5cfec"
+            ]
         ]
     },
     {
@@ -870,9 +850,9 @@
         "wires": []
     },
     {
-        "id": "e4047f9f.6e601",
+        "id": "64b8d1b7.9e6e9",
         "type": "inject",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "repeat": "",
         "crontab": "",
@@ -885,14 +865,14 @@
         "y": 400,
         "wires": [
             [
-                "19681276.82adfe"
+                "4c0624b.5b716dc"
             ]
         ]
     },
     {
-        "id": "64515738.474178",
+        "id": "4b13d0cf.e440b",
         "type": "debug",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -905,9 +885,9 @@
         "wires": []
     },
     {
-        "id": "47f75f8f.fc76c",
+        "id": "6ae3ba8b.2674a4",
         "type": "http request",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -921,14 +901,14 @@
         "y": 400,
         "wires": [
             [
-                "64515738.474178"
+                "4b13d0cf.e440b"
             ]
         ]
     },
     {
-        "id": "19681276.82adfe",
+        "id": "4c0624b.5b716dc",
         "type": "change",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "rules": [
             {
@@ -955,14 +935,14 @@
         "y": 400,
         "wires": [
             [
-                "47f75f8f.fc76c"
+                "6ae3ba8b.2674a4"
             ]
         ]
     },
     {
-        "id": "4bf4302b.8ab1",
+        "id": "c819234c.ad801",
         "type": "inject",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "repeat": "",
         "crontab": "",
@@ -975,14 +955,14 @@
         "y": 440,
         "wires": [
             [
-                "19681276.82adfe"
+                "4c0624b.5b716dc"
             ]
         ]
     },
     {
-        "id": "6c9c147c.93a2dc",
+        "id": "7cdb8160.8870f",
         "type": "inject",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "",
         "repeat": "",
         "crontab": "",
@@ -995,14 +975,14 @@
         "y": 480,
         "wires": [
             [
-                "19681276.82adfe"
+                "4c0624b.5b716dc"
             ]
         ]
     },
     {
-        "id": "523a86eb.532798",
+        "id": "9eff3654.dc9cc8",
         "type": "inject",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Get all sensor values",
         "repeat": "",
         "crontab": "",
@@ -1015,34 +995,34 @@
         "y": 520,
         "wires": [
             [
-                "19681276.82adfe"
+                "4c0624b.5b716dc"
             ]
         ]
     },
     {
-        "id": "6c4915bc.2f3dbc",
+        "id": "ac93889d.c209a8",
         "type": "inject",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Rename sensor",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "sensor/setName",
-        "payload": "{    \"id\": 7,    \"name\": \"test\"}",
+        "payload": "{    \"id\": 1,    \"name\": \"\"}",
         "payloadType": "json",
         "x": 320,
         "y": 560,
         "wires": [
             [
-                "19681276.82adfe"
+                "4c0624b.5b716dc"
             ]
         ]
     },
     {
-        "id": "b6f03b36.ed17e8",
+        "id": "908ce346.2ffc4",
         "type": "comment",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Examples",
         "info": "",
         "x": 80,
@@ -1050,9 +1030,9 @@
         "wires": []
     },
     {
-        "id": "cb66cb62.85aa98",
+        "id": "91951f5b.83403",
         "type": "comment",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Config",
         "info": "IP-address of your Telldus device",
         "x": 70,
@@ -1060,9 +1040,9 @@
         "wires": []
     },
     {
-        "id": "4a40417a.61ba2",
+        "id": "7aa7dcf8.0198a4",
         "type": "comment",
-        "z": "7b34ca58.d04434",
+        "z": "1a404673.458efa",
         "name": "Authentication",
         "info": "- Authentication steps are documented at  \nhttp://api.telldus.net/localapi/api.html  ",
         "x": 90,
@@ -1082,5 +1062,175 @@
         "x": 600,
         "y": 100,
         "wires": []
+    },
+    {
+        "id": "9b283bed.cffaa",
+        "type": "debug",
+        "z": "70d96846.09f498",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 995,
+        "y": 20,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "364e8dbb.c22892",
+        "type": "inject",
+        "z": "1a404673.458efa",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 480,
+        "y": 660,
+        "wires": [
+            [
+                "70b9b079.30d4e",
+                "c22e7d09.f098d"
+            ]
+        ]
+    },
+    {
+        "id": "70b9b079.30d4e",
+        "type": "function",
+        "z": "1a404673.458efa",
+        "name": "",
+        "func": "os = global.get(\"os\")\nmsg.payload = os.hostname()\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 720,
+        "y": 620,
+        "wires": [
+            [
+                "5d5c7de0.3a7724"
+            ]
+        ]
+    },
+    {
+        "id": "c22e7d09.f098d",
+        "type": "change",
+        "z": "1a404673.458efa",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "os.hostname",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 720,
+        "wires": [
+            [
+                "c8d094af.7ce708"
+            ]
+        ]
+    },
+    {
+        "id": "5d5c7de0.3a7724",
+        "type": "debug",
+        "z": "1a404673.458efa",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 920,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "c8d094af.7ce708",
+        "type": "debug",
+        "z": "1a404673.458efa",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 900,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "42642271.b5cfec",
+        "type": "switch",
+        "z": "70d96846.09f498",
+        "name": "statusCode",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "200",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 870,
+        "y": 40,
+        "wires": [
+            [
+                "9b283bed.cffaa"
+            ],
+            [
+                "a353b729.25d108"
+            ]
+        ]
+    },
+    {
+        "id": "490ca971.2cc678",
+        "type": "inject",
+        "z": "1a404673.458efa",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "dev",
+        "payload": "app=\"Nodered_dev\"",
+        "payloadType": "str",
+        "x": 410,
+        "y": 220,
+        "wires": [
+            [
+                "1d9b2717.cbf819"
+            ]
+        ]
     }
 ]

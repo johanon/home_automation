@@ -28,6 +28,8 @@ sudo apt-get upgrade
 
 - Containers  
 docker-compose pull   
+update veriosn number in nodered image ./nodered/Dockerfile   
+docker-compose build  
 docker-compose up -d  
 (docker image prune)  
 
