@@ -108,7 +108,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "10",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
