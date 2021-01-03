@@ -360,7 +360,7 @@
     },
     "node-red-contrib-influxdb": {
         "name": "node-red-contrib-influxdb",
-        "version": "0.5.0",
+        "version": "0.5.3",
         "local": false,
         "nodes": {
             "influxdb": {
@@ -380,7 +380,7 @@
     },
     "node-red-dashboard": {
         "name": "node-red-dashboard",
-        "version": "2.23.5",
+        "version": "2.26.1",
         "local": false,
         "nodes": {
             "ui_base": {
@@ -626,6 +626,128 @@
                 "local": false,
                 "module": "node-red-node-tail",
                 "file": "/usr/src/node-red/node_modules/node-red-node-tail/28-tail.js"
+            }
+        }
+    },
+    "@alpine-code/node-red-contrib-graphql": {
+        "name": "@alpine-code/node-red-contrib-graphql",
+        "version": "0.1.0",
+        "local": true,
+        "nodes": {
+            "graphql-config": {
+                "name": "graphql-config",
+                "types": [
+                    "graphql-config"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "@alpine-code/node-red-contrib-graphql",
+                "file": "/data/node_modules/@alpine-code/node-red-contrib-graphql/src/nodes/config.js"
+            },
+            "graphql-query": {
+                "name": "graphql-query",
+                "types": [
+                    "graphql-query"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "@alpine-code/node-red-contrib-graphql",
+                "file": "/data/node_modules/@alpine-code/node-red-contrib-graphql/src/nodes/query.js"
+            },
+            "graphql-mutate": {
+                "name": "graphql-mutate",
+                "types": [
+                    "graphql-mutate"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "@alpine-code/node-red-contrib-graphql",
+                "file": "/data/node_modules/@alpine-code/node-red-contrib-graphql/src/nodes/mutate.js"
+            },
+            "graphql-subscribe": {
+                "name": "graphql-subscribe",
+                "types": [
+                    "graphql-subscribe"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "@alpine-code/node-red-contrib-graphql",
+                "file": "/data/node_modules/@alpine-code/node-red-contrib-graphql/src/nodes/subscribe.js"
+            }
+        }
+    },
+    "node-red-contrib-graphql": {
+        "name": "node-red-contrib-graphql",
+        "version": "0.2.5",
+        "local": true,
+        "nodes": {
+            "graphql": {
+                "name": "graphql",
+                "types": [
+                    "graphql-server",
+                    "graphql"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "node-red-contrib-graphql",
+                "file": "/data/node_modules/node-red-contrib-graphql/graphql.js"
+            }
+        }
+    },
+    "node-red-contrib-tibber-api": {
+        "name": "node-red-contrib-tibber-api",
+        "version": "2.0.0",
+        "local": true,
+        "nodes": {
+            "tibber-api-endpoint": {
+                "name": "tibber-api-endpoint",
+                "types": [
+                    "tibber-api-endpoint"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "node-red-contrib-tibber-api",
+                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-api-endpoint.js"
+            },
+            "tibber-feed": {
+                "name": "tibber-feed",
+                "types": [
+                    "tibber-feed"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "node-red-contrib-tibber-api",
+                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-feed.js"
+            },
+            "tibber-query": {
+                "name": "tibber-query",
+                "types": [
+                    "tibber-query"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "node-red-contrib-tibber-api",
+                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-query.js"
+            },
+            "tibber-data": {
+                "name": "tibber-data",
+                "types": [
+                    "tibber-data"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "node-red-contrib-tibber-api",
+                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-data.js"
+            },
+            "tibber-notify": {
+                "name": "tibber-notify",
+                "types": [
+                    "tibber-notify"
+                ],
+                "enabled": true,
+                "local": true,
+                "module": "node-red-contrib-tibber-api",
+                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-notify.js"
             }
         }
     }
