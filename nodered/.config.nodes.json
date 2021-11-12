@@ -1,8 +1,9 @@
 {
     "node-red": {
         "name": "node-red",
-        "version": "1.2.3",
+        "version": "2.1.3",
         "local": false,
+        "user": false,
         "nodes": {
             "inject": {
                 "name": "inject",
@@ -11,6 +12,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/20-inject.js"
             },
@@ -21,6 +23,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/21-debug.js"
             },
@@ -31,6 +34,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/24-complete.js"
             },
@@ -41,6 +45,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/25-catch.js"
             },
@@ -51,6 +56,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/25-status.js"
             },
@@ -58,10 +64,12 @@
                 "name": "link",
                 "types": [
                     "link in",
-                    "link out"
+                    "link out",
+                    "link call"
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/60-link.js"
             },
@@ -72,6 +80,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/90-comment.js"
             },
@@ -82,6 +91,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/98-unknown.js"
             },
@@ -92,6 +102,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/function/10-function.js"
             },
@@ -102,6 +113,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/function/10-switch.js"
             },
@@ -112,6 +124,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/function/15-change.js"
             },
@@ -122,6 +135,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/function/16-range.js"
             },
@@ -132,6 +146,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/function/80-template.js"
             },
@@ -142,6 +157,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/function/89-delay.js"
             },
@@ -152,6 +168,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/function/89-trigger.js"
             },
@@ -162,8 +179,20 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/function/90-exec.js"
+            },
+            "rbe": {
+                "name": "rbe",
+                "types": [
+                    "rbe"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red",
+                "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/function/rbe.js"
             },
             "tls": {
                 "name": "tls",
@@ -172,6 +201,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/network/05-tls.js"
             },
@@ -182,6 +212,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/network/06-httpproxy.js"
             },
@@ -194,6 +225,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/network/10-mqtt.js"
             },
@@ -205,6 +237,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/network/21-httpin.js"
             },
@@ -215,6 +248,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/network/21-httprequest.js"
             },
@@ -228,6 +262,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/network/22-websocket.js"
             },
@@ -240,6 +275,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/network/31-tcpin.js"
             },
@@ -251,6 +287,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/network/32-udp.js"
             },
@@ -261,6 +298,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/parsers/70-CSV.js"
             },
@@ -271,6 +309,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/parsers/70-HTML.js"
             },
@@ -281,6 +320,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/parsers/70-JSON.js"
             },
@@ -291,6 +331,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/parsers/70-XML.js"
             },
@@ -301,6 +342,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/parsers/70-YAML.js"
             },
@@ -312,6 +354,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/sequence/17-split.js"
             },
@@ -322,6 +365,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/sequence/18-sort.js"
             },
@@ -332,6 +376,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/sequence/19-batch.js"
             },
@@ -343,6 +388,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/storage/10-file.js"
             },
@@ -353,6 +399,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/storage/23-watch.js"
             }
@@ -360,8 +407,9 @@
     },
     "node-red-contrib-influxdb": {
         "name": "node-red-contrib-influxdb",
-        "version": "0.5.3",
+        "version": "0.6.1",
         "local": false,
+        "user": false,
         "nodes": {
             "influxdb": {
                 "name": "influxdb",
@@ -373,6 +421,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-contrib-influxdb",
                 "file": "/usr/src/node-red/node_modules/node-red-contrib-influxdb/influxdb.js"
             }
@@ -380,8 +429,9 @@
     },
     "node-red-dashboard": {
         "name": "node-red-dashboard",
-        "version": "2.26.1",
+        "version": "3.1.0",
         "local": false,
+        "user": false,
         "nodes": {
             "ui_base": {
                 "name": "ui_base",
@@ -390,6 +440,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_base.js"
             },
@@ -400,6 +451,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_button.js"
             },
@@ -410,6 +462,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_dropdown.js"
             },
@@ -420,6 +473,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_switch.js"
             },
@@ -430,6 +484,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_slider.js"
             },
@@ -440,6 +495,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_numeric.js"
             },
@@ -450,6 +506,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_text_input.js"
             },
@@ -460,6 +517,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_date_picker.js"
             },
@@ -470,6 +528,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_colour_picker.js"
             },
@@ -480,6 +539,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_form.js"
             },
@@ -490,6 +550,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_text.js"
             },
@@ -500,6 +561,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_gauge.js"
             },
@@ -510,6 +572,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_chart.js"
             },
@@ -520,6 +583,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_audio.js"
             },
@@ -530,6 +594,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_toast.js"
             },
@@ -540,6 +605,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_ui_control.js"
             },
@@ -550,6 +616,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_template.js"
             },
@@ -560,6 +627,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_link.js"
             },
@@ -570,6 +638,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_tab.js"
             },
@@ -580,6 +649,7 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_group.js"
             },
@@ -590,114 +660,17 @@
                 ],
                 "enabled": true,
                 "local": false,
+                "user": false,
                 "module": "node-red-dashboard",
                 "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_spacer.js"
             }
         }
     },
-    "node-red-node-rbe": {
-        "name": "node-red-node-rbe",
-        "version": "0.2.9",
-        "local": false,
-        "nodes": {
-            "rbe": {
-                "name": "rbe",
-                "types": [
-                    "rbe"
-                ],
-                "enabled": true,
-                "local": false,
-                "module": "node-red-node-rbe",
-                "file": "/usr/src/node-red/node_modules/node-red-node-rbe/rbe.js"
-            }
-        }
-    },
-    "node-red-node-tail": {
-        "name": "node-red-node-tail",
-        "version": "0.1.1",
-        "local": false,
-        "nodes": {
-            "tail": {
-                "name": "tail",
-                "types": [
-                    "tail"
-                ],
-                "enabled": true,
-                "local": false,
-                "module": "node-red-node-tail",
-                "file": "/usr/src/node-red/node_modules/node-red-node-tail/28-tail.js"
-            }
-        }
-    },
-    "@alpine-code/node-red-contrib-graphql": {
-        "name": "@alpine-code/node-red-contrib-graphql",
-        "version": "0.1.0",
-        "local": true,
-        "nodes": {
-            "graphql-config": {
-                "name": "graphql-config",
-                "types": [
-                    "graphql-config"
-                ],
-                "enabled": true,
-                "local": true,
-                "module": "@alpine-code/node-red-contrib-graphql",
-                "file": "/data/node_modules/@alpine-code/node-red-contrib-graphql/src/nodes/config.js"
-            },
-            "graphql-query": {
-                "name": "graphql-query",
-                "types": [
-                    "graphql-query"
-                ],
-                "enabled": true,
-                "local": true,
-                "module": "@alpine-code/node-red-contrib-graphql",
-                "file": "/data/node_modules/@alpine-code/node-red-contrib-graphql/src/nodes/query.js"
-            },
-            "graphql-mutate": {
-                "name": "graphql-mutate",
-                "types": [
-                    "graphql-mutate"
-                ],
-                "enabled": true,
-                "local": true,
-                "module": "@alpine-code/node-red-contrib-graphql",
-                "file": "/data/node_modules/@alpine-code/node-red-contrib-graphql/src/nodes/mutate.js"
-            },
-            "graphql-subscribe": {
-                "name": "graphql-subscribe",
-                "types": [
-                    "graphql-subscribe"
-                ],
-                "enabled": true,
-                "local": true,
-                "module": "@alpine-code/node-red-contrib-graphql",
-                "file": "/data/node_modules/@alpine-code/node-red-contrib-graphql/src/nodes/subscribe.js"
-            }
-        }
-    },
-    "node-red-contrib-graphql": {
-        "name": "node-red-contrib-graphql",
-        "version": "0.2.5",
-        "local": true,
-        "nodes": {
-            "graphql": {
-                "name": "graphql",
-                "types": [
-                    "graphql-server",
-                    "graphql"
-                ],
-                "enabled": true,
-                "local": true,
-                "module": "node-red-contrib-graphql",
-                "file": "/data/node_modules/node-red-contrib-graphql/graphql.js"
-            }
-        }
-    },
     "node-red-contrib-tibber-api": {
         "name": "node-red-contrib-tibber-api",
-        "version": "2.0.0",
-        "local": true,
+        "version": "2.5.3",
+        "local": false,
+        "user": false,
         "nodes": {
             "tibber-api-endpoint": {
                 "name": "tibber-api-endpoint",
@@ -705,9 +678,10 @@
                     "tibber-api-endpoint"
                 ],
                 "enabled": true,
-                "local": true,
+                "local": false,
+                "user": false,
                 "module": "node-red-contrib-tibber-api",
-                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-api-endpoint.js"
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-tibber-api/nodes/tibber-api-endpoint.js"
             },
             "tibber-feed": {
                 "name": "tibber-feed",
@@ -715,9 +689,10 @@
                     "tibber-feed"
                 ],
                 "enabled": true,
-                "local": true,
+                "local": false,
+                "user": false,
                 "module": "node-red-contrib-tibber-api",
-                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-feed.js"
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-tibber-api/nodes/tibber-feed.js"
             },
             "tibber-query": {
                 "name": "tibber-query",
@@ -725,9 +700,10 @@
                     "tibber-query"
                 ],
                 "enabled": true,
-                "local": true,
+                "local": false,
+                "user": false,
                 "module": "node-red-contrib-tibber-api",
-                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-query.js"
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-tibber-api/nodes/tibber-query.js"
             },
             "tibber-data": {
                 "name": "tibber-data",
@@ -735,9 +711,10 @@
                     "tibber-data"
                 ],
                 "enabled": true,
-                "local": true,
+                "local": false,
+                "user": false,
                 "module": "node-red-contrib-tibber-api",
-                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-data.js"
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-tibber-api/nodes/tibber-data.js"
             },
             "tibber-notify": {
                 "name": "tibber-notify",
@@ -745,9 +722,10 @@
                     "tibber-notify"
                 ],
                 "enabled": true,
-                "local": true,
+                "local": false,
+                "user": false,
                 "module": "node-red-contrib-tibber-api",
-                "file": "/data/node_modules/node-red-contrib-tibber-api/nodes/tibber-notify.js"
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-tibber-api/nodes/tibber-notify.js"
             }
         }
     }
