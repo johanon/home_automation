@@ -1,7 +1,9 @@
 # Home automation  
 Including 
+- Nodered, Influx, Grafana
 - Telldus Tellstick  
 - Oregon temperature sensors
+- Tibber 
 
 # Telldus Local API  
 - Authentication steps are documented at  
@@ -13,6 +15,8 @@ https://api.telldus.com/
 - Telldus TellStick ZNet Lite v2 has some additional info onboard  
 http://192.168.1.5/api  
   
+# Tibber
+- Enter token in config node
 
 # Installation  
 Targeting raspberry pi with docker  

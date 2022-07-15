@@ -39,6 +39,7 @@
         "type": "tibber-api-endpoint",
         "feedUrl": "wss://api.tibber.com/v1-beta/gql/subscriptions",
         "queryUrl": "https://api.tibber.com/v1-beta/gql",
+        "feedTimeout": "60",
         "name": "Hemma"
     },
     {
@@ -517,6 +518,8 @@
         "lastMeterConsumption": true,
         "accumulatedConsumption": true,
         "accumulatedProduction": true,
+        "accumulatedConsumptionLastHour": false,
+        "accumulatedProductionLastHour": false,
         "accumulatedCost": true,
         "accumulatedReward": true,
         "currency": true,
@@ -580,14 +583,11 @@
         "name": "Get Home Id",
         "props": [
             {
-                "p": "payload",
-                "v": "{   viewer {     homes {       id       address {         address1         address2         address3         postalCode         city         country         latitude         longitude                }     }   } }",
-                "vt": "str"
+                "p": "payload"
             },
             {
                 "p": "topic",
-                "v": "",
-                "vt": "string"
+                "vt": "str"
             }
         ],
         "repeat": "",
@@ -595,7 +595,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{   viewer {     homes {       id       address {         address1         address2         address3         postalCode         city         country         latitude         longitude                }     }   } }",
+        "payload": "{   viewer {     homes {       address {         address1         address2         address3         postalCode         city         country         latitude         longitude       }     }   } }",
         "payloadType": "str",
         "x": 130,
         "y": 100,
@@ -766,7 +766,7 @@
         "type": "debug",
         "z": "683fd7.e63da028",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -911,7 +911,7 @@
         "type": "debug",
         "z": "683fd7.e63da028",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,

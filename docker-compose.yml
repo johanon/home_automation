@@ -33,9 +33,12 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=admin
       - INFLUXDB_USER=user
       - INFLUXDB_USER_PASSWORD=user
+      - INFLUXDB_DATA_QUERY_LOG_ENABLED=false
+      - INFLUXDB_REPORTING_DISABLED=true
+      - INFLUXDB_HTTP_LOG_ENABLED=false
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:9.0.3
     restart: unless-stopped
     ports:
       - 3000:3000
