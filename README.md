@@ -40,32 +40,13 @@ docker-compose up -d
 
 
 # Raspberry Pi additional installation notes    
-Flash SD-card Samsung Evo with Raspbian Buster using Balena Etcher.  
-In boot directory. Touch ssh and add wpa_supplicant.conf for wifi.  
-Boot up pi. Change password and /etc/hostname  
-sudo apt-get update  
-sudo apt-get upgrade  
+Flash SD-card Samsung Evo with Raspbian OS
 
-Docker from Raspbian stretch official repos too old to support docker-compose features (2020-01-16).  
+sudo apt update
+sudo apt upgrade -y
+curl -sSL https://get.docker.com | sh
+sudo reboot
+docker run hello-world
+
 docker --version  
-Docker version 1.8.3, build f4bf5c7  
-
-Using official Docker repos blending the following instructions  
-https://docs.docker.com/install/linux/docker-ce/debian/  
-and  
-https://withblue.ink/2019/07/13/yes-you-can-run-docker-on-raspbian.html  
-going for arch=armhf  
-
-sudo apt-get remove docker docker-engine docker.io containerd runc  
-sudo apt update  
-sudo apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common  
-curl -fsSL https://download.docker.com/linux/raspbian/gpg | sudo apt-key add -
-
-echo "deb [arch=armhf] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-     $(lsb_release -cs) stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list
-
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
-docker --version  
-Docker version 19.03.5, build 633a0ea
+Docker version 20.10.21, build baeda1f
