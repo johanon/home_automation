@@ -1,7 +1,7 @@
 {
     "node-red": {
         "name": "node-red",
-        "version": "3.0.0",
+        "version": "3.0.2",
         "local": false,
         "user": false,
         "nodes": {
@@ -679,7 +679,7 @@
     },
     "node-red-contrib-tibber-api": {
         "name": "node-red-contrib-tibber-api",
-        "version": "2.7.0",
+        "version": "5.0.1",
         "local": false,
         "user": false,
         "nodes": {
