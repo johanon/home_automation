@@ -46,7 +46,9 @@ sudo apt update
 sudo apt upgrade -y
 curl -sSL https://get.docker.com | sh
 sudo reboot
-docker run hello-world
-
 docker --version  
 Docker version 20.10.21, build baeda1f
+
+sudo apt install git
+sudo apt-get install python3 python3-pip
+sudo pip3 install docker-compose
